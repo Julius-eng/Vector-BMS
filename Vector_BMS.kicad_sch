@@ -10336,9 +10336,9 @@
 
 (property "Reference" "R92" (at 462.534 173.482 90) (effects (font (size 1.27 1.27)))) 
 
-(property "Value" "CSM2F-8518-L100J01" (at 453.39 166.878 0) (effects (font (size 1.27 1.27)))) 
+(property "Value" "WSLP5931L1000FEA" (at 453.39 166.878 0) (effects (font (size 1.27 1.27)))) 
 
-(property "Footprint" "" (at 460.502 173.482 90) (effects (font (size 1.27 1.27)) (hide yes))) 
+(property "Footprint" "Resistor_SMD:R_5931_15076Metric" (at 460.502 173.482 90) (effects (font (size 1.27 1.27)) (hide yes))) 
 
 (property "Datasheet" "~" (at 458.724 173.482 0) (effects (font (size 1.27 1.27)) (hide yes))) 
 
