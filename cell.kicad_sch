@@ -5,64 +5,6 @@
 	(uuid "4608e482-1568-4a5e-a231-277fa4fa92dc")
 	(paper "A4")
 	(lib_symbols
-		(symbol "Samacsys:DMG2305UX-7"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 11.43 3.81 0)
-				(effects (font (size 1.27 1.27)) (justify left top))
-			)
-			(property "Value" "DMG2305UX-7"
-				(at 11.43 1.27 0)
-				(effects (font (size 1.27 1.27)) (justify left top))
-			)
-			(property "Footprint" "SOT96P240X115-3N"
-				(at 11.43 -98.73 0)
-				(effects (font (size 1.27 1.27)) (justify left top) (hide yes))
-			)
-			(property "Datasheet" "https://www.diodes.com/assets/Datasheets/DMG2305UX.pdf"
-				(at 11.43 -198.73 0)
-				(effects (font (size 1.27 1.27)) (justify left top) (hide yes))
-			)
-			(property "Description" "P-Ch MOSFET -20V -4A SOT-23"
-				(at 0 0 0)
-				(effects (font (size 1.27 1.27)) (hide yes))
-			)
-			(symbol "DMG2305UX-7_1_1"
-				(polyline (pts (xy 7.62 2.54) (xy 7.62 -2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 7.62 5.08) (xy 7.62 7.62)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 2.54 0) (xy 5.08 0)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 5.08 5.08) (xy 5.08 0)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 7.62 2.54) (xy 5.842 2.54)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 7.62 5.08) (xy 5.842 5.08)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 5.842 0) (xy 7.62 0)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 5.842 5.588) (xy 5.842 4.572)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 5.842 -0.508) (xy 5.842 0.508)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 5.842 2.032) (xy 5.842 3.048)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 8.128 2.032) (xy 9.144 2.032)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 8.636 3.048) (xy 8.636 5.08)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 7.62 5.08) (xy 8.636 5.08)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 8.636 2.032) (xy 8.636 0)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 7.62 0) (xy 8.636 0)) (stroke (width 0.254) (type default)) (fill (type none)))
-				(circle (center 6.35 2.54) (radius 3.81) (stroke (width 0.254) (type default)) (fill (type none)))
-				(polyline (pts (xy 7.62 2.54) (xy 6.604 3.048) (xy 6.604 2.032) (xy 7.62 2.54)) (stroke (width 0.254) (type default)) (fill (type outline)))
-				(polyline (pts (xy 8.636 2.032) (xy 8.128 3.048) (xy 9.144 3.048) (xy 8.636 2.032)) (stroke (width 0.254) (type default)) (fill (type outline)))
-				(pin passive line (at 0 0 0) (length 2.54)
-					(name "G" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line (at 7.62 -5.08 90) (length 2.54)
-					(name "S" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line (at 7.62 10.16 270) (length 2.54)
-					(name "D" (effects (font (size 1.27 1.27))))
-					(number "3" (effects (font (size 1.27 1.27))))
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:C"
 			(pin_numbers
 				(hide yes)
@@ -476,12 +418,12 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Samacsys_kicad_sym:PWR263S-20-2R50J"
+		(symbol "Samacsys:DMG2305UX-7"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "R"
-				(at 16.51 7.62 0)
+			(property "Reference" "Q"
+				(at 11.43 3.81 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -489,8 +431,8 @@
 					(justify left top)
 				)
 			)
-			(property "Value" "3.9"
-				(at 16.51 5.08 0)
+			(property "Value" "DMG2305UX-7"
+				(at 11.43 1.27 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -498,18 +440,8 @@
 					(justify left top)
 				)
 			)
-			(property "Footprint" "Resistor_SMD:R_2512_6332Metric"
-				(at 16.51 -94.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.vishay.com/docs/20128/dcrcwe3.pdf"
-				(at 16.51 -194.92 0)
+			(property "Footprint" "SOT96P240X115-3N"
+				(at 11.43 -98.73 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -518,7 +450,17 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Thick Film Resistor 3.9Ohm 5% 3W 2512"
+			(property "Datasheet" "https://www.diodes.com/assets/Datasheets/DMG2305UX.pdf"
+				(at 11.43 -198.73 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Description" "P-Ch MOSFET -20V -4A SOT-23"
 				(at 0 0 0)
 				(effects
 					(font
@@ -527,72 +469,226 @@
 					(hide yes)
 				)
 			)
-			(property "Height" "4.5"
-				(at 16.51 -394.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
+			(symbol "DMG2305UX-7_1_1"
+				(polyline
+					(pts
+						(xy 2.54 0) (xy 5.08 0)
 					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" ""
-				(at 16.51 -494.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Price/Stock" ""
-				(at 16.51 -594.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Name" "Bourns"
-				(at 16.51 -694.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Part_Number" "3.9"
-				(at 16.51 -794.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(symbol "PWR263S-20-2R50J_1_1"
-				(rectangle
-					(start 5.08 2.54)
-					(end 15.24 -5.08)
 					(stroke
 						(width 0.254)
 						(type default)
 					)
 					(fill
-						(type background)
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.08 5.08) (xy 5.08 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.842 5.588) (xy 5.842 4.572)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.842 2.032) (xy 5.842 3.048)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.842 0) (xy 7.62 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 5.842 -0.508) (xy 5.842 0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 6.35 2.54)
+					(radius 3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 5.08) (xy 5.842 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 5.08) (xy 7.62 7.62)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 5.08) (xy 8.636 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 2.54) (xy 5.842 2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 2.54) (xy 7.62 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 2.54) (xy 6.604 3.048) (xy 6.604 2.032) (xy 7.62 2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.62 0) (xy 8.636 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 8.128 2.032) (xy 9.144 2.032)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 8.636 3.048) (xy 8.636 5.08)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 8.636 2.032) (xy 8.636 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 8.636 2.032) (xy 8.128 3.048) (xy 9.144 3.048) (xy 8.636 2.032)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type outline)
 					)
 				)
 				(pin passive line
 					(at 0 0 0)
-					(length 5.08)
-					(name "1"
+					(length 2.54)
+					(name "G"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -608,27 +704,9 @@
 					)
 				)
 				(pin passive line
-					(at 0 -2.54 0)
-					(length 5.08)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 20.32 0 180)
-					(length 5.08)
-					(name "3"
+					(at 7.62 10.16 270)
+					(length 2.54)
+					(name "D"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -644,16 +722,16 @@
 					)
 				)
 				(pin passive line
-					(at 20.32 -2.54 180)
-					(length 5.08)
-					(name "4"
+					(at 7.62 -5.08 90)
+					(length 2.54)
+					(name "S"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "4"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -768,7 +846,7 @@
 	)
 	(text "Resistor"
 		(exclude_from_sim no)
-		(at 90.678 102.616 0)
+		(at 128.016 125.476 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -777,34 +855,16 @@
 		(uuid "2a385044-8a98-49bc-b540-48acf9b13c9f")
 	)
 	(junction
+		(at 122.174 76.454)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0f09b54f-a60e-425a-bf2f-8f9ee0d57882")
+	)
+	(junction
 		(at 178.054 76.454)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "271f9ef1-333c-495c-a66a-77c645feeff8")
-	)
-	(junction
-		(at 104.394 98.044)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3a87e9dc-1766-4ad6-bdd7-0215c18a418f")
-	)
-	(junction
-		(at 104.394 92.964)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "440948c6-1dc6-46bb-87aa-c2cba40559f2")
-	)
-	(junction
-		(at 133.096 76.454)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ab10237d-5480-4ac6-af90-86ec4262a458")
-	)
-	(junction
-		(at 104.394 95.504)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b93fadd5-590b-402d-bb61-3d0c9618f980")
 	)
 	(junction
 		(at 162.814 76.454)
@@ -812,33 +872,9 @@
 		(color 0 0 0 0)
 		(uuid "c350bb9d-2278-4909-a199-cbf82a084d27")
 	)
-	(junction
-		(at 129.794 98.044)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d6de9cbf-99aa-4441-90f7-f1defbfd14f8")
-	)
-	(no_connect
-		(at 80.01 108.712)
-		(uuid "94cf20b2-09e3-4184-9a0d-9e66ed570c86")
-	)
-	(no_connect
-		(at 80.01 106.172)
-		(uuid "d1279945-b9a3-4c42-9403-1dab65eb03fa")
-	)
 	(wire
 		(pts
-			(xy 104.394 92.964) (xy 100.33 92.964)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "033ff34f-4cef-4bbd-b0f9-d4c0c30e69d3")
-	)
-	(wire
-		(pts
-			(xy 133.096 98.044) (xy 133.096 76.454)
+			(xy 122.174 95.504) (xy 122.174 76.454)
 		)
 		(stroke
 			(width 0)
@@ -848,33 +884,13 @@
 	)
 	(wire
 		(pts
-			(xy 129.794 92.964) (xy 139.954 92.964)
+			(xy 129.794 100.584) (xy 139.954 100.584)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "0d6aebbf-a527-464c-9e5c-79b33e7bc762")
-	)
-	(wire
-		(pts
-			(xy 129.794 98.044) (xy 129.794 100.584)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "267e6567-e420-45ac-9059-7088cb8bdc4a")
-	)
-	(wire
-		(pts
-			(xy 100.33 108.712) (xy 100.33 118.364)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3017ecc9-37f3-4b00-af72-fee9e3868f77")
 	)
 	(wire
 		(pts
@@ -888,23 +904,13 @@
 	)
 	(wire
 		(pts
-			(xy 96.774 76.454) (xy 133.096 76.454)
+			(xy 96.774 76.454) (xy 122.174 76.454)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "3a0cecba-22cd-4e7b-b845-5d3df587225a")
-	)
-	(wire
-		(pts
-			(xy 129.794 95.504) (xy 129.794 98.044)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "46a18152-3244-4010-863a-1b6e3e931d31")
 	)
 	(wire
 		(pts
@@ -918,23 +924,13 @@
 	)
 	(wire
 		(pts
-			(xy 104.394 92.964) (xy 104.394 95.504)
+			(xy 122.174 127.254) (xy 119.761 127.254)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "511c4f84-2507-4929-bfaf-73b6d4a04e60")
-	)
-	(wire
-		(pts
-			(xy 104.394 95.504) (xy 104.394 98.044)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6936203f-f459-4690-bb13-902c8651002a")
+		(uuid "685481aa-7166-4683-b9cc-ed0e9e3136e6")
 	)
 	(wire
 		(pts
@@ -958,26 +954,6 @@
 	)
 	(wire
 		(pts
-			(xy 133.096 76.454) (xy 139.954 76.454)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "70f1b79c-b3fb-4abe-81b4-627b8fb85d6e")
-	)
-	(wire
-		(pts
-			(xy 100.33 92.964) (xy 100.33 106.172)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "773ded36-9a4c-4a84-8ade-02d1027c0d56")
-	)
-	(wire
-		(pts
 			(xy 162.814 76.454) (xy 162.814 104.394)
 		)
 		(stroke
@@ -988,23 +964,13 @@
 	)
 	(wire
 		(pts
-			(xy 147.574 92.964) (xy 155.194 92.964)
+			(xy 147.574 100.584) (xy 155.194 100.584)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "850bd144-4576-49e6-a6f6-ba0999f09c4b")
-	)
-	(wire
-		(pts
-			(xy 129.794 98.044) (xy 133.096 98.044)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9152c614-36be-4811-910c-1726d0c65461")
 	)
 	(wire
 		(pts
@@ -1018,6 +984,16 @@
 	)
 	(wire
 		(pts
+			(xy 122.174 110.744) (xy 122.174 119.634)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc7e0770-da81-41cd-91fc-dadcbba7c771")
+	)
+	(wire
+		(pts
 			(xy 147.574 76.454) (xy 162.814 76.454)
 		)
 		(stroke
@@ -1028,6 +1004,16 @@
 	)
 	(wire
 		(pts
+			(xy 122.174 76.454) (xy 139.954 76.454)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d64019c0-5769-433c-97b6-0587cdfd60d4")
+	)
+	(wire
+		(pts
 			(xy 162.814 76.454) (xy 178.054 76.454)
 		)
 		(stroke
@@ -1035,26 +1021,6 @@
 			(type default)
 		)
 		(uuid "db85e40b-890c-4149-a456-a8bcbdd2df8e")
-	)
-	(wire
-		(pts
-			(xy 98.044 118.364) (xy 100.33 118.364)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e8b26032-6d45-48cb-bf8e-41fe46e9a6f4")
-	)
-	(wire
-		(pts
-			(xy 104.394 98.044) (xy 104.394 100.584)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fb3769b1-9ca9-4194-8481-0a310baeb785")
 	)
 	(hierarchical_label "C+"
 		(shape input)
@@ -1080,7 +1046,7 @@
 	)
 	(hierarchical_label "S"
 		(shape input)
-		(at 155.194 92.964 0)
+		(at 155.194 100.584 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1102,7 +1068,7 @@
 	)
 	(hierarchical_label "C-"
 		(shape input)
-		(at 98.044 118.364 180)
+		(at 119.761 127.254 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1229,11 +1195,17 @@
 					(unit 1)
 				)
 			)
+			(project "cell"
+				(path "/4608e482-1568-4a5e-a231-277fa4fa92dc"
+					(reference "R?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 143.764 92.964 270)
+		(at 143.764 100.584 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1241,7 +1213,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005d2ebe7d")
 		(property "Reference" "R47"
-			(at 143.764 87.7062 90)
+			(at 143.764 95.3262 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1249,7 +1221,7 @@
 			)
 		)
 		(property "Value" "1.2k"
-			(at 143.764 90.0176 90)
+			(at 143.764 97.6376 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1257,7 +1229,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 143.764 91.186 90)
+			(at 143.764 98.806 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1266,7 +1238,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 143.764 92.964 0)
+			(at 143.764 100.584 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1275,7 +1247,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 143.764 92.964 0)
+			(at 143.764 100.584 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1284,7 +1256,7 @@
 			)
 		)
 		(property "MPN" "RC0603JR-073K3L"
-			(at 143.764 92.964 0)
+			(at 143.764 100.584 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1349,6 +1321,12 @@
 					(unit 1)
 				)
 			)
+			(project "cell"
+				(path "/4608e482-1568-4a5e-a231-277fa4fa92dc"
+					(reference "R?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -1361,7 +1339,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005d2ebe8a")
 		(property "Reference" "Q13"
-			(at 113.284 89.408 0)
+			(at 117.856 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1370,7 +1348,7 @@
 			)
 		)
 		(property "Value" "DMG2305UX-7"
-			(at 127.762 105.41 0)
+			(at 119.38 107.188 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1475,21 +1453,6 @@
 		(pin "2"
 			(uuid "aa553b1e-290d-44e2-848f-3e3d71ed12d4")
 		)
-		(pin "6"
-			(uuid "c517b139-1160-4eb5-a386-e271142147ab")
-		)
-		(pin "5"
-			(uuid "115fec6b-1da1-4574-8a96-3d2f21f2b011")
-		)
-		(pin "7"
-			(uuid "121dbfdd-ecfb-4abc-b008-6f1f4ded6f00")
-		)
-		(pin "4"
-			(uuid "f289e1c1-9d6f-4579-920a-6812ee6003b3")
-		)
-		(pin "8"
-			(uuid "89e729ec-6597-493b-b989-8534d100755d")
-		)
 		(instances
 			(project "BMS_Prototype_1"
 				(path "/2e7a8612-84b6-48bc-808d-73f9aa4adf59/098b96a5-ce7b-44d9-bddf-b9a908ad5e8b"
@@ -1541,11 +1504,17 @@
 					(unit 1)
 				)
 			)
+			(project "cell"
+				(path "/4608e482-1568-4a5e-a231-277fa4fa92dc"
+					(reference "Q?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
-		(lib_id "Samacsys_kicad_sym:PWR263S-20-2R50J")
-		(at 100.33 108.712 180)
+		(lib_id "Device:R")
+		(at 122.174 123.444 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1553,7 +1522,7 @@
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-00005d2ebe98")
 		(property "Reference" "R45"
-			(at 102.108 107.5436 0)
+			(at 123.952 122.2756 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1562,7 +1531,7 @@
 			)
 		)
 		(property "Value" "3.9"
-			(at 96.012 113.538 0)
+			(at 120.65 124.206 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1571,27 +1540,25 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_2512_6332Metric"
-			(at 83.82 13.792 0)
+			(at 123.952 123.444 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.vishay.com/docs/20128/dcrcwe3.pdf"
-			(at 83.82 -86.208 0)
+		(property "Datasheet" "~"
+			(at 122.174 123.444 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 				(hide yes)
 			)
 		)
-		(property "Description" "Thick Film Resistor 3.9Ohm 5% 3W 2512"
-			(at 100.33 108.712 0)
+		(property "Description" "Resistor"
+			(at 122.174 123.444 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1600,7 +1567,7 @@
 			)
 		)
 		(property "MPN" "CRCW25123R90JNEA"
-			(at 100.33 108.712 0)
+			(at 122.174 123.444 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1609,7 +1576,7 @@
 			)
 		)
 		(property "Height" "4.5"
-			(at 83.82 -286.208 0)
+			(at 105.664 -271.476 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1619,7 +1586,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 83.82 -386.208 0)
+			(at 105.664 -371.476 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1629,7 +1596,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 83.82 -486.208 0)
+			(at 105.664 -471.476 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1639,7 +1606,7 @@
 			)
 		)
 		(property "Manufacturer_Name" "Bourns"
-			(at 83.82 -586.208 0)
+			(at 105.664 -571.476 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1649,7 +1616,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "3.9"
-			(at 83.82 -686.208 0)
+			(at 105.664 -671.476 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1664,12 +1631,6 @@
 		(pin "2"
 			(uuid "dec1e3fe-403f-433d-bc66-cacaaa5dffcc")
 		)
-		(pin "4"
-			(uuid "0b0133eb-dba3-4f11-a73b-85c0f0285fa6")
-		)
-		(pin "3"
-			(uuid "4ddcac04-dd25-4159-826c-652d6bea9748")
-		)
 		(instances
 			(project "BMS_Prototype_1"
 				(path "/2e7a8612-84b6-48bc-808d-73f9aa4adf59/098b96a5-ce7b-44d9-bddf-b9a908ad5e8b"
@@ -1718,6 +1679,12 @@
 				)
 				(path "/2e7a8612-84b6-48bc-808d-73f9aa4adf59/fdf0b6b7-a562-48c0-ac05-ba8393b996b9"
 					(reference "R45")
+					(unit 1)
+				)
+			)
+			(project "cell"
+				(path "/4608e482-1568-4a5e-a231-277fa4fa92dc"
+					(reference "R?")
 					(unit 1)
 				)
 			)
@@ -1843,6 +1810,12 @@
 					(unit 1)
 				)
 			)
+			(project "cell"
+				(path "/4608e482-1568-4a5e-a231-277fa4fa92dc"
+					(reference "C?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -1965,6 +1938,12 @@
 					(unit 1)
 				)
 			)
+			(project "cell"
+				(path "/4608e482-1568-4a5e-a231-277fa4fa92dc"
+					(reference "D?")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -2075,6 +2054,18 @@
 					(unit 1)
 				)
 			)
+			(project "cell"
+				(path "/4608e482-1568-4a5e-a231-277fa4fa92dc"
+					(reference "#PWR?")
+					(unit 1)
+				)
+			)
 		)
 	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
 )
