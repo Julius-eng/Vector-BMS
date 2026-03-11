@@ -11604,7 +11604,7 @@
 
 (property "Reference" "U7" (at 581.66 152.3746 0) (effects (font (size 1.27 1.27)))) 
 
-(property "Value" "ISL28022" (at 581.66 154.686 0) (effects (font (size 1.27 1.27)))) 
+(property "Value" "INA226" (at 581.66 154.686 0) (effects (font (size 1.27 1.27)))) 
 
 (property "Footprint" "Package_SO:VSSOP-10_3x3mm_P0.5mm" (at 601.98 181.102 0) (effects (font (size 1.27 1.27)) (hide yes))) 
 
@@ -11612,7 +11612,7 @@
 
 (property "Description" "" (at 581.66 169.672 0) (effects (font (size 1.27 1.27)) (hide yes))) 
 
-(property "MPN" "ISL28022FUZ-T7A" (at 581.66 169.672 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "10" (uuid "631166e7-82cf-4f02-87d4-e9d606c4b224")) (pin "1" (uuid "9f0363d9-58e7-46f7-b3f8-c2a95745e440")) (pin "2" (uuid "19c5e2e6-e0cf-480d-a950-397b661a3c5f")) (pin "8" (uuid "2dbc6181-b429-4123-b13d-617dbd498c58")) (pin "4" (uuid "78278b80-937e-4318-8ed9-b7b030a4db06")) (pin "3" (uuid "4bb7f019-0395-4d63-a0f5-6a2589d38f39")) (pin "9" (uuid "d4f49b43-448a-46f6-80b3-4cdca1439606")) (pin "6" (uuid "e2702c53-6445-417a-b174-48cc557b1035")) (pin "5" (uuid "d3f98fc1-1bab-4dc6-82ac-8887deb103d1")) (pin "7" (uuid "eba91a54-52c5-41fb-8757-a9e5658459e3")) (instances (project "BMS_Prototype_1" (path "/2e7a8612-84b6-48bc-808d-73f9aa4adf59" (reference "U7") (unit 1))))) 
+(property "MPN" "INA226AIDGSR" (at 581.66 169.672 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "10" (uuid "631166e7-82cf-4f02-87d4-e9d606c4b224")) (pin "1" (uuid "9f0363d9-58e7-46f7-b3f8-c2a95745e440")) (pin "2" (uuid "19c5e2e6-e0cf-480d-a950-397b661a3c5f")) (pin "8" (uuid "2dbc6181-b429-4123-b13d-617dbd498c58")) (pin "4" (uuid "78278b80-937e-4318-8ed9-b7b030a4db06")) (pin "3" (uuid "4bb7f019-0395-4d63-a0f5-6a2589d38f39")) (pin "9" (uuid "d4f49b43-448a-46f6-80b3-4cdca1439606")) (pin "6" (uuid "e2702c53-6445-417a-b174-48cc557b1035")) (pin "5" (uuid "d3f98fc1-1bab-4dc6-82ac-8887deb103d1")) (pin "7" (uuid "eba91a54-52c5-41fb-8757-a9e5658459e3")) (instances (project "BMS_Prototype_1" (path "/2e7a8612-84b6-48bc-808d-73f9aa4adf59" (reference "U7") (unit 1))))) 
 
 (symbol (lib_id "Device:R") (at 635.762 156.464 90) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "a15134f2-672f-4163-9dcc-b3f83478f5fc") 
 
