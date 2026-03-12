@@ -11,6 +11,8 @@ Vector BMS is a modular BMS supporting up to **24 series cells** (24S) with:
 - USB interface for configuration
 - Isolated design for safety
 
+**Firmware:** This project uses [VESC BMS firmware](https://github.com/vedderb/vesc_bms_fw) for full VESC Tool integration.
+
 ## Hardware Architecture
 
 ### Schematic Structure
@@ -19,15 +21,15 @@ Vector BMS is a modular BMS supporting up to **24 series cells** (24S) with:
 Vector_BMS.kicad_sch (Main)
 ├── Power management
 ├── Cell monitoring (LTC6811 × 2)
-├── Current sensing
+├── Current sensing (INA226)
 ├── High-side switching
 └── Connectors
 
 MCU.kicad_sch
 ├── STM32L476 microcontroller
-├── CAN interface (isolated)
-├── isoSPI interface
-└── USB interface
+├── CAN interface (isolated via ISO1050)
+├── isoSPI interface (LTC6820)
+└── USB interface (CP2104)
 
 cell.kicad_sch / cell2.kicad_sch
 └── Per-cell balancing circuits (×12 each)
@@ -60,78 +62,128 @@ cell.kicad_sch / cell2.kicad_sch
 
 - **Shunt:** 0.1mΩ (WSLP5931, 15×7.6mm)
 - **Max continuous:** 120A
-- **Resolution:** ~0.3µV LSB (INA226 at ±40.96mV range)
+- **Sensor:** INA226 (16-bit I2C power monitor)
+- **Resolution:** ~1mA per LSB
 - **Power dissipation:** 1.44W at 120A
 
-## VESC Integration
+## VESC BMS Firmware
 
-Vector BMS is designed to work with [VESC](https://vesc-project.com/) motor controllers via CAN bus.
+Vector BMS uses the [VESC BMS firmware](https://github.com/vedderb/vesc_bms_fw) which provides:
 
-### CAN Communication
+- ✅ Cell monitoring and balancing
+- ✅ Charge control with CC/CV support
+- ✅ Low-power sleep mode
+- ✅ CAN-bus integration with VESC motor controllers
+- ✅ USB configuration via VESC Tool
+- ✅ Ah and Wh counting
+- ✅ Distributed balancing across multiple BMSes
+- ✅ Bootloader and firmware update support
 
-- **Protocol:** CAN 2.0B, 500 kbps (configurable)
-- **Isolation:** Galvanically isolated via ISO1050
-- **Messages supported:**
-  - Battery voltage (total pack)
-  - Individual cell voltages
-  - Current (charge/discharge)
-  - State of Charge (SoC)
-  - Temperature
-  - Fault status
+### Building Firmware
 
-### VESC Firmware Compatibility
+#### Prerequisites
 
-The BMS communicates using VESC's CAN status messages:
-- `CAN_PACKET_BMS_V_TOT` — Total pack voltage
-- `CAN_PACKET_BMS_V_CELL` — Individual cell voltages
-- `CAN_PACKET_BMS_I` — Pack current
-- `CAN_PACKET_BMS_AH_WH` — Ah/Wh consumed
-- `CAN_PACKET_BMS_SOC_SOH_TEMP` — SoC, SoH, temperature
+1. **ARM GCC Toolchain**
+   ```bash
+   # Ubuntu/Debian
+   sudo apt install gcc-arm-none-eabi
+   
+   # macOS
+   brew install arm-none-eabi-gcc
+   
+   # Windows: Download from ARM website
+   ```
 
-VESC Tool can display BMS data in real-time and log it alongside motor controller data.
+2. **ChibiOS** (included as submodule in VESC BMS)
 
-## MCU Capabilities
+3. **Make**
 
-### STM32L476RGT6 Features
+#### Clone and Build
 
-- **Core:** ARM Cortex-M4 @ 80MHz with FPU
-- **Memory:** 1MB Flash, 128KB SRAM
-- **Power:** Ultra-low-power modes (down to 30nA shutdown)
+```bash
+# Clone VESC BMS firmware
+git clone --recursive https://github.com/vedderb/vesc_bms_fw.git
+cd vesc_bms_fw
 
-### Firmware Functions
+# Copy Vector BMS hardware config
+cp /path/to/Vector-BMS/firmware/vesc_bms_hw/hw_vector_bms.h hwconf/
+cp /path/to/Vector-BMS/firmware/vesc_bms_hw/hw_vector_bms.c hwconf/
 
-1. **Cell Monitoring**
-   - Read cell voltages via isoSPI (LTC6811)
-   - Detect over/under-voltage conditions
-   - Calculate State of Charge (SoC)
+# Build for Vector BMS
+make HWCONF=hw_vector_bms
 
-2. **Balancing Control**
-   - Passive balancing via 3.9Ω discharge resistors (~1A @ 4.2V)
-   - Configurable balance threshold (default: 3.3V minimum)
-   - Configurable delta voltage (default: 10mV)
-   - Temperature-aware balancing
+# Output: build/vesc_bms_fw.bin
+```
 
-3. **Current Measurement**
-   - Read shunt voltage via I2C (INA226)
-   - Coulomb counting for SoC
-   - Over-current protection
+#### Flashing
 
-4. **Protection**
-   - Over-voltage cutoff (4.2V default)
-   - Under-voltage cutoff (2.8V default)
-   - Over-current protection (120A discharge, 60A charge)
-   - Over-temperature protection
-   - Short-circuit detection
+Using ST-Link:
+```bash
+# Flash via OpenOCD
+openocd -f interface/stlink.cfg -f target/stm32l4x.cfg \
+    -c "program build/vesc_bms_fw.bin 0x08000000 verify reset exit"
 
-5. **Communication**
-   - CAN bus (VESC protocol)
-   - USB serial (configuration/debugging)
-   - Optional: UART, I2C expansion
+# Or via st-flash
+st-flash write build/vesc_bms_fw.bin 0x08000000
+```
 
-6. **User Interface**
-   - Status LEDs
-   - Buzzer for alerts
-   - OLED display support (optional)
+Using VESC Tool (for updates):
+1. Connect Vector BMS via USB
+2. Open VESC Tool
+3. Go to **Firmware** → **Bootloader**
+4. Select `vesc_bms_fw.bin` and upload
+
+### Hardware Configuration
+
+The Vector BMS hardware config is in `firmware/vesc_bms_hw/`:
+
+```
+firmware/vesc_bms_hw/
+├── hw_vector_bms.h     # Pin definitions, parameters
+└── hw_vector_bms.c     # Initialization, INA226 driver
+```
+
+Key parameters in `hw_vector_bms.h`:
+
+```c
+#define HW_CELLS_SERIES         24          // Cell count
+#define HW_SHUNT_RES            (0.1e-3)    // Shunt resistance
+#define HW_INA226_I2C_ADDR      0x40        // INA226 address
+```
+
+### VESC Tool Configuration
+
+1. Connect Vector BMS via USB
+2. Open VESC Tool and connect
+3. Go to **VESC BMS** tab
+4. Configure:
+   - Cell count: 24
+   - Balance start voltage
+   - Balance delta voltage
+   - Current limits
+   - Temperature limits
+5. **Write Configuration**
+
+## MCU Pin Mapping
+
+| Function | STM32 Pin | Notes |
+|----------|-----------|-------|
+| SPI1_NSS (LTC6820) | PA4 | Directly driven CS |
+| SPI1_SCK | PA5 | isoSPI clock |
+| SPI1_MISO | PA6 | isoSPI data in |
+| SPI1_MOSI | PA7 | isoSPI data out |
+| I2C1_SDA (INA226) | PB7 | Current sensor |
+| I2C1_SCL | PB6 | Current sensor |
+| CAN1_RX | PB8 | Via ISO1050 |
+| CAN1_TX | PB9 | Via ISO1050 |
+| USART1_TX | PA9 | Via CP2104 to USB |
+| USART1_RX | PA10 | Via CP2104 to USB |
+| CHG_EN | PC6 | Charge enable |
+| DSG_EN | PC7 | Discharge enable |
+| PCHG_EN | PC8 | Precharge enable |
+| LED_RED | PA0 | Status LED |
+| LED_GREEN | PA1 | Power LED |
+| BUZZER | PA8 | Audible alarm |
 
 ## Connectors
 
@@ -139,110 +191,11 @@ VESC Tool can display BMS data in real-time and log it alongside motor controlle
 |-----------|----------|
 | J1 | Main battery input |
 | J2 | Charger input |
-| J3 | OLED display |
+| J3 | OLED display (I2C) |
 | J12 | CAN bus |
 | J14 | Serial/debug |
 | J17 | Power button |
 | J24 | USB (CP2104) |
-
-## Firmware
-
-### Directory Structure
-
-```
-firmware/
-├── platformio.ini          # PlatformIO build configuration
-├── include/
-│   ├── bms_config.h        # BMS configuration parameters
-│   ├── ltc6811.h           # LTC6811 driver header
-│   └── ina226.h            # INA226 driver header
-└── src/
-    └── main.c              # Main application
-```
-
-### Installation
-
-#### Prerequisites
-
-1. **PlatformIO** (recommended) or **STM32CubeIDE**
-   ```bash
-   # Install PlatformIO CLI
-   pip install platformio
-   
-   # Or install VS Code extension: PlatformIO IDE
-   ```
-
-2. **ST-Link** programmer/debugger (or any SWD-compatible debugger)
-
-3. **USB drivers** for CP2104 (for serial debugging)
-   - Windows: [CP210x drivers from Silicon Labs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
-   - Linux: Built-in (cp210x module)
-   - macOS: Built-in
-
-#### Building
-
-```bash
-cd firmware
-
-# Build firmware
-pio run
-
-# Build and upload
-pio run --target upload
-
-# Clean build
-pio run --target clean
-```
-
-#### Flashing via ST-Link
-
-1. Connect ST-Link to SWD header (J14 or dedicated SWD pads)
-2. Power the BMS board
-3. Run:
-   ```bash
-   pio run --target upload
-   ```
-
-#### Debug Build
-
-```bash
-# Build with debug symbols
-pio run -e debug
-
-# Start debug session (VS Code + PlatformIO)
-pio debug
-```
-
-### Configuration
-
-Edit `include/bms_config.h` to customize:
-
-```c
-// Cell count (must match hardware)
-#define BMS_NUM_CELLS           24
-
-// Voltage thresholds (mV)
-#define CELL_OV_THRESHOLD       4200    // Over-voltage cutoff
-#define CELL_UV_THRESHOLD       2800    // Under-voltage cutoff
-#define CELL_BALANCE_THRESHOLD  3300    // Start balancing above this
-#define CELL_BALANCE_DELTA      10      // Balance if cell > min + delta
-
-// Current limits (mA)
-#define PACK_MAX_CHARGE_CURRENT     60000   // 60A
-#define PACK_MAX_DISCHARGE_CURRENT  120000  // 120A
-
-// CAN configuration
-#define CAN_BITRATE             500000  // 500 kbps
-#define CAN_BMS_ID              10      // BMS CAN ID
-```
-
-### Serial Monitor
-
-Connect via USB and open serial monitor at 115200 baud:
-
-```bash
-pio device monitor
-```
 
 ## Hardware Design
 
@@ -257,13 +210,10 @@ pio device monitor
 3. Review schematic and PCB layout
 4. Generate BOM and fabrication files
 
-### BOM Generation
-
-Use KiCad's built-in BOM tool or export to CSV for JLCPCB/LCSC assembly.
-
 ## License
 
-*License TBD*
+Hardware: Open Source (license TBD)
+Firmware: [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html) (VESC BMS)
 
 ## Contributing
 
@@ -271,6 +221,7 @@ Contributions welcome! Please open an issue or pull request.
 
 ## Acknowledgments
 
+- [Benjamin Vedder](https://github.com/vedderb) for VESC BMS firmware
 - VESC Project for the open-source motor controller ecosystem
 - Analog Devices for LTC6811 reference designs
 - Arrow DAO community
