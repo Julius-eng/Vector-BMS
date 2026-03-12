@@ -46,13 +46,14 @@ cell.kicad_sch / cell2.kicad_sch
 | USB-UART | CP2104 | USB to UART bridge |
 | DC-DC | LM5165 | Wide-input buck converter |
 | Balance FET | DMG2305UX-7 | P-ch MOSFET, SOT-23 |
+| Balance Resistor | CRCW25123R90JNEA | 3.9Ω, 1W, 2512 |
 | High-side Switch | IRFL4105PBF | N-ch logic-level MOSFET |
 
 ### Cell Configuration
 
 - **Maximum cells:** 24S (two LTC6811 in daisy chain)
 - **Cell voltage range:** 0V to 5V per cell (compatible with most Li-ion/LiFePO4)
-- **Balance current:** ~100mA per cell (passive balancing)
+- **Balance current:** ~1A per cell @ 4.2V (passive balancing via 3.9Ω resistor)
 - **Temperature monitoring:** 3× NTC thermistors
 
 ### Current Sensing
@@ -105,8 +106,9 @@ VESC Tool can display BMS data in real-time and log it alongside motor controlle
    - Calculate State of Charge (SoC)
 
 2. **Balancing Control**
-   - Passive balancing via discharge resistors
-   - Configurable balance threshold
+   - Passive balancing via 3.9Ω discharge resistors (~1A @ 4.2V)
+   - Configurable balance threshold (default: 3.3V minimum)
+   - Configurable delta voltage (default: 10mV)
    - Temperature-aware balancing
 
 3. **Current Measurement**
@@ -115,9 +117,9 @@ VESC Tool can display BMS data in real-time and log it alongside motor controlle
    - Over-current protection
 
 4. **Protection**
-   - Over-voltage cutoff
-   - Under-voltage cutoff
-   - Over-current protection
+   - Over-voltage cutoff (4.2V default)
+   - Under-voltage cutoff (2.8V default)
+   - Over-current protection (120A discharge, 60A charge)
    - Over-temperature protection
    - Short-circuit detection
 
@@ -143,31 +145,121 @@ VESC Tool can display BMS data in real-time and log it alongside motor controlle
 | J17 | Power button |
 | J24 | USB (CP2104) |
 
-## Getting Started
+## Firmware
+
+### Directory Structure
+
+```
+firmware/
+├── platformio.ini          # PlatformIO build configuration
+├── include/
+│   ├── bms_config.h        # BMS configuration parameters
+│   ├── ltc6811.h           # LTC6811 driver header
+│   └── ina226.h            # INA226 driver header
+└── src/
+    └── main.c              # Main application
+```
+
+### Installation
+
+#### Prerequisites
+
+1. **PlatformIO** (recommended) or **STM32CubeIDE**
+   ```bash
+   # Install PlatformIO CLI
+   pip install platformio
+   
+   # Or install VS Code extension: PlatformIO IDE
+   ```
+
+2. **ST-Link** programmer/debugger (or any SWD-compatible debugger)
+
+3. **USB drivers** for CP2104 (for serial debugging)
+   - Windows: [CP210x drivers from Silicon Labs](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers)
+   - Linux: Built-in (cp210x module)
+   - macOS: Built-in
+
+#### Building
+
+```bash
+cd firmware
+
+# Build firmware
+pio run
+
+# Build and upload
+pio run --target upload
+
+# Clean build
+pio run --target clean
+```
+
+#### Flashing via ST-Link
+
+1. Connect ST-Link to SWD header (J14 or dedicated SWD pads)
+2. Power the BMS board
+3. Run:
+   ```bash
+   pio run --target upload
+   ```
+
+#### Debug Build
+
+```bash
+# Build with debug symbols
+pio run -e debug
+
+# Start debug session (VS Code + PlatformIO)
+pio debug
+```
+
+### Configuration
+
+Edit `include/bms_config.h` to customize:
+
+```c
+// Cell count (must match hardware)
+#define BMS_NUM_CELLS           24
+
+// Voltage thresholds (mV)
+#define CELL_OV_THRESHOLD       4200    // Over-voltage cutoff
+#define CELL_UV_THRESHOLD       2800    // Under-voltage cutoff
+#define CELL_BALANCE_THRESHOLD  3300    // Start balancing above this
+#define CELL_BALANCE_DELTA      10      // Balance if cell > min + delta
+
+// Current limits (mA)
+#define PACK_MAX_CHARGE_CURRENT     60000   // 60A
+#define PACK_MAX_DISCHARGE_CURRENT  120000  // 120A
+
+// CAN configuration
+#define CAN_BITRATE             500000  // 500 kbps
+#define CAN_BMS_ID              10      // BMS CAN ID
+```
+
+### Serial Monitor
+
+Connect via USB and open serial monitor at 115200 baud:
+
+```bash
+pio device monitor
+```
+
+## Hardware Design
 
 ### Prerequisites
 
 - KiCad 9.0+ for schematic/PCB editing
-- STM32CubeIDE or PlatformIO for firmware development
-- VESC Tool for motor controller integration
 
-### Building
+### Opening the Project
 
 1. Clone the repository
 2. Open `Vector_BMS.kicad_pro` in KiCad
 3. Review schematic and PCB layout
 4. Generate BOM and fabrication files
 
-### Firmware
+### BOM Generation
 
-*Firmware repository link TBD*
-
-The MCU firmware handles:
-- LTC6811 communication via SPI/isoSPI
-- INA226 current sensing via I2C
-- CAN message transmission to VESC
-- Protection state machine
-- USB configuration interface
+Use KiCad's built-in BOM tool or export to CSV for JLCPCB/LCSC assembly.
 
 ## License
 
